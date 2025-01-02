@@ -9,7 +9,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
-      ALLOW_ANONYMOUS_LOGIN: "yes"  # Allow unauthenticated connections
+      ALLOW_ANONYMOUS_LOGIN: "yes"
     ports:
       - "2181:2181"
     networks:
@@ -27,11 +27,9 @@ services:
       KAFKA_LISTENER_LISTENER_NAME_OUTSIDE: OUTSIDE
       KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
       KAFKA_LISTENER_NAMES: INSIDE,OUTSIDE
-      KAFKA_LISTENER_SECURITY_PROTOCOL_INSIDE: PLAINTEXT  # Explicitly define the security protocol for INSIDE
-      KAFKA_LISTENER_SECURITY_PROTOCOL_OUTSIDE: PLAINTEXT  # Explicitly define the security protocol for OUTSIDE
+      KAFKA_LISTENER_SECURITY_PROTOCOL_INSIDE: PLAINTEXT  # Added explicit security protocol for INSIDE
+      KAFKA_LISTENER_SECURITY_PROTOCOL_OUTSIDE: PLAINTEXT  # Added explicit security protocol for OUTSIDE
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENER_INTERNAL_PORT: 9093
-      KAFKA_LISTENER_EXTERNAL_PORT: 9092
     ports:
       - "9092:9092"
       - "9093:9093"
