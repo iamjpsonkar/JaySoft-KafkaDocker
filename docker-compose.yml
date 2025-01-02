@@ -12,6 +12,9 @@ services:
       ALLOW_ANONYMOUS_LOGIN: "yes"
     ports:
       - "2181:2181"
+    volumes:
+      - /Users/jsonkar/Fynd/kafka-docker-setup/zookeeper_data/data:/data
+      - /Users/jsonkar/Fynd/kafka-docker-setup/zookeeper_data/datalog:/datalog
     networks:
       - kafka-net
     container_name: zookeeper
@@ -34,6 +37,8 @@ services:
       - "9092:9092"  # Internal port
       - "9093:9093"  # Inside port
       - "9094:9094"  # Outside port
+    volumes:
+      - /Users/jsonkar/Fynd/kafka-docker-setup/kafka_datadata:/var/lib/kafka/data
     networks:
       - kafka-net
     depends_on:
