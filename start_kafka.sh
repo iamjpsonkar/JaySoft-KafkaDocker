@@ -23,3 +23,6 @@ echo "Opening Kafdrop UI..."
 open http://localhost:9000
 
 echo "Kafka, Zookeeper, and Kafdrop are now running."
+
+echo "Creating kafka topics"
+docker exec -it kafka /usr/bin/kafka-topics --create --topic "fynd-json-gringotts-payment_status" --bootstrap-server localhost:9093 --partitions 1 --replication-factor 1
