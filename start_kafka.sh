@@ -12,7 +12,7 @@ docker-compose pull
 
 # Start Kafka, Zookeeper, and the UI app (Kafdrop)
 echo "Starting services..."
-docker-compose up -d
+docker-compose up --build -d
 
 # Wait for services to be ready
 echo "Waiting for Kafka and Zookeeper to be ready..."
