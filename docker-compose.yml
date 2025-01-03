@@ -25,8 +25,8 @@ services:
     platform: linux/arm64
     environment:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092  # Set the OUTSIDE to localhost:9092
-      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092  # Bind OUTSIDE to port 9092
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092  # External access via localhost:9092
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092  # Bind internal Kafka on 9093 and external on 9092
       KAFKA_LISTENER_NAMES: INSIDE,OUTSIDE
       KAFKA_LISTENER_SECURITY_PROTOCOL_INSIDE: PLAINTEXT
       KAFKA_LISTENER_SECURITY_PROTOCOL_OUTSIDE: PLAINTEXT
@@ -34,8 +34,8 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       ALLOW_PLAINTEXT_LISTENER: "yes"
     ports:
-      - "9092:9092"  # Expose external port 9092
-      - "9093:9093"  # Internal port
+      - "9092:9092"  # Exposed external port 9092
+      - "9093:9093"  # Internal Kafka port
     volumes:
       - kafka_data:/var/lib/kafka/data
     networks:
@@ -49,7 +49,7 @@ services:
     image: obsidiandynamics/kafdrop:latest
     platform: linux/arm64
     environment:
-      KAFKA_BROKERCONNECT: kafka:9093  # Internal Kafka connection
+      KAFKA_BROKERCONNECT: kafka:9093  # Connect to the internal Kafka port
     ports:
       - "9000:9000"
     networks:
