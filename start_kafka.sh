@@ -18,11 +18,10 @@ docker-compose up --build -d
 echo "Waiting for Kafka and Zookeeper to be ready..."
 sleep 15
 
-# Open Kafdrop UI in default browser
-echo "Opening Kafdrop UI..."
-open http://localhost:9000
-
 echo "Kafka, Zookeeper, and Kafdrop are now running."
 
-echo "Creating kafka topics"
-docker exec -it kafka /usr/bin/kafka-topics --create --topic "fynd-json-gringotts-payment_status" --bootstrap-server localhost:9093 --partitions 1 --replication-factor 1
+# Open Kafdrop UI in default browser
+echo "Open Kafdrop UI http://localhost:9000"
+
+# echo "Creating kafka topics"
+# docker exec -it kafka /usr/bin/kafka-topics --create --topic "test-topic" --bootstrap-server localhost:9093 --partitions 1 --replication-factor 1
